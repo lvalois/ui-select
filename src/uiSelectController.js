@@ -19,7 +19,7 @@ uis.controller('uiSelectCtrl',
 
   ctrl.removeSelected = false; //If selected item(s) should be removed from dropdown list
   ctrl.closeOnSelect = true; //Initialized inside uiSelect directive link function
-  ctrl.search = EMPTY_SEARCH;
+  ctrl.search = undefined;
 
   ctrl.activeIndex = 0; //Dropdown of choices
   ctrl.items = []; //All available choices

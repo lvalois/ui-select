@@ -50,9 +50,12 @@ uis.directive('uiSelectChoices',
         $compile(element, transcludeFn)(scope); //Passing current transcludeFn to be able to append elements correctly from uisTranscludeAppend
 
         scope.$watch('$select.search', function(newValue) {
-          if(newValue && !$select.open && $select.multiple) $select.activate(false, true);
-          $select.activeIndex = $select.tagging.isActivated ? -1 : 0;
-          $select.refresh(attrs.refresh);
+          if(newValue !== undefined){
+            if(!$select.open && $select.multiple) $select.activate(false, true);
+            
+            $select.activeIndex = $select.tagging.isActivated ? -1 : 0;
+            $select.refresh(attrs.refresh);
+          }
         });
 
         attrs.$observe('refreshDelay', function() {

@@ -1,7 +1,7 @@
 /*!
  * ui-select
- * http://github.com/angular-ui/ui-select
- * Version: 0.11.2 - 2015-03-17T04:08:46.474Z
+ * https://github.com/eproulx-petalmd/ui-select
+ * Version: 0.11.2.1 - 2015-05-13T18:42:56.280Z
  * License: MIT
  */
 
@@ -219,9 +219,12 @@ uis.directive('uiSelectChoices',
         $compile(element, transcludeFn)(scope); //Passing current transcludeFn to be able to append elements correctly from uisTranscludeAppend
 
         scope.$watch('$select.search', function(newValue) {
-          if(newValue && !$select.open && $select.multiple) $select.activate(false, true);
-          $select.activeIndex = $select.tagging.isActivated ? -1 : 0;
-          $select.refresh(attrs.refresh);
+          if(newValue !== undefined){
+            if(!$select.open && $select.multiple) $select.activate(false, true);
+            
+            $select.activeIndex = $select.tagging.isActivated ? -1 : 0;
+            $select.refresh(attrs.refresh);
+          }
         });
 
         attrs.$observe('refreshDelay', function() {
@@ -255,7 +258,7 @@ uis.controller('uiSelectCtrl',
 
   ctrl.removeSelected = false; //If selected item(s) should be removed from dropdown list
   ctrl.closeOnSelect = true; //Initialized inside uiSelect directive link function
-  ctrl.search = EMPTY_SEARCH;
+  ctrl.search = undefined;
 
   ctrl.activeIndex = 0; //Dropdown of choices
   ctrl.items = []; //All available choices
@@ -540,7 +543,9 @@ uis.controller('uiSelectCtrl',
   ctrl.clear = function($event) {
     ctrl.select(undefined);
     $event.stopPropagation();
-    ctrl.focusser[0].focus();
+    $timeout(function() {
+      ctrl.focusser[0].focus();
+    }, 0, false);
   };
 
   // Toggle dropdown

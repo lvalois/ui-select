@@ -1,11 +1,11 @@
 {
   "name": "ui-select",
-  "version": "0.11.2",
-  "homepage": "https://github.com/angular-ui/ui-select",
+  "version": "0.11.2.1",
+  "homepage": "https://github.com/eproulx-petalmd/ui-select",
   "authors": [
-    "AngularUI"
+    "Eric Proulx"
   ],
-  "description": "AngularJS ui-select",
+  "description": "PetalMD AngularJS ui-select",
   "main": ["dist/select.js", "dist/select.css"],
   "license": "MIT",
   "ignore": [
